@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiplication Quest</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <a class="logo" href="#"
+          ><span class="logo-mark">✳</span
+          ><span
+            >math<span class="logo-accent">quest</span
+            ><small>PIXEL LEARNING WORLD</small></span
+          ></a
+        >
+        <div class="top-stats">
+          <button
+            class="sound-toggle"
+            id="soundToggle"
+            aria-label="Aktifkan atau matikan suara"
+          >
+            🔊 SOUND ON
+          </button>
+          <div class="tiny-stat">🪙 <b id="coins">0</b></div>
+          <div class="tiny-stat">⭐ <b id="streak">0</b></div>
+          <div class="avatar">M</div>
+        </div>
+      </header>
+
+      <section class="world-banner">
+        <div class="world-copy">
+          <span class="tag"><i></i> WORLD 01 · MULTIPLICATION</span>
+          <h1>Ready, set,<br /><em>multiply!</em></h1>
+          <p>Latih kemampuan perkalianmu dan jadilah pahlawan matematika.</p>
+          <button class="start-btn" id="startBtn">▶ MULAI PETUALANGAN</button>
+        </div>
+        <div class="pixel-world" aria-label="Ilustrasi dunia pixel">
+          <div class="sun"></div>
+          <div class="pixel-cloud c1"></div>
+          <div class="pixel-cloud c2"></div>
+          <div class="mountain m1"></div>
+          <div class="mountain m2"></div>
+          <div class="ground"></div>
+          <div class="tree tree1">♣</div>
+          <div class="tree tree2">♣</div>
+          <div class="hero-sprite">
+            <div class="hair"></div>
+            <div class="face"><i></i><i></i><b></b></div>
+            <div class="body"></div>
+            <div class="leg l"></div>
+            <div class="leg r"></div>
+          </div>
+          <div class="slime"><span>•ᴗ•</span></div>
+          <div class="floating-x">×</div>
+          <div class="floating-plus">+</div>
+        </div>
+      </section>
+
+      <div class="section-title">
+        <div>
+          <span class="eyebrow">YOUR ADVENTURE</span>
+          <h2>Pilih misi</h2>
+        </div>
+        <span class="level-badge">LEVEL <b id="levelNumber">01</b> / 03</span>
+      </div>
+      <section class="mission-grid">
+        <button class="mission-card chosen" data-level="0">
+          <span class="mission-icon purple">▦</span
+          ><span class="mission-info"
+            ><small>QUEST 01</small><b>Break the number</b
+            ><span>Memecah angka · 16 × 4</span></span
+          ><span class="mission-arrow">↗</span
+          ><span class="lock unlocked">✓</span>
+        </button>
+        <button class="mission-card" data-level="1">
+          <span class="mission-icon pink">✕</span
+          ><span class="mission-info"
+            ><small>QUEST 02</small><b>Teen × teen</b
+            ><span>Belasan × belasan · 11 × 12</span></span
+          ><span class="mission-arrow">↗</span
+          ><span class="lock" id="lock1">🔒</span>
+        </button>
+        <button class="mission-card" data-level="2">
+          <span class="mission-icon mint">⚔</span
+          ><span class="mission-info"
+            ><small>QUEST 03</small><b>Monster challenge</b
+            ><span>Tantangan campuran</span></span
+          ><span class="mission-arrow">↗</span
+          ><span class="lock" id="lock2">🔒</span>
+        </button>
+      </section>
+
+      <section class="play-area" id="playArea">
+        <div class="play-heading">
+          <div>
+            <span class="eyebrow" id="modeEyebrow">QUEST 01 / LEARN MODE</span>
+            <h2 id="panelTitle">Belajar strateginya</h2>
+          </div>
+          <div class="pixel-badge">✦ NEW SKILL</div>
+        </div>
+        <div class="mode-tabs">
+          <button class="mode-tab active" data-mode="learn">01 · BELAJAR</button
+          ><button class="mode-tab" data-mode="practice">02 · LATIHAN</button
+          ><button class="mode-tab" data-mode="boss">03 · BOSS FIGHT</button>
+        </div>
+
+        <div id="learnPanel">
+          <p class="instruction" id="lessonIntro">
+            Kita hitung 16 × 4 dengan memecah 16 menjadi 10 + 6.
+          </p>
+          <div class="math-stage">
+            <div class="math-label">SOLVE THE EQUATION</div>
+            <div class="equation">
+              <span id="wholeA">16</span><b>×</b><span id="wholeB">4</span
+              ><b>=</b><span class="unknown">?</span>
+            </div>
+            <div class="stage-caption">
+              <span class="pixel-dot"></span> TIP: Pecah angka menjadi puluhan +
+              satuan
+            </div>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-top">
+                <span>STEP 01</span><span class="step-icon">↘</span>
+              </div>
+              <h3>Pecah angkanya</h3>
+              <p id="splitExplain">16 = 10 + 6</p>
+              <div class="number-pieces">
+                <b id="partA">10</b><span>+</span><b id="partB">6</b>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-top">
+                <span>STEP 02</span><span class="step-icon">×</span>
+              </div>
+              <h3>Kalikan masing-masing</h3>
+              <div class="mini-sum">
+                <span id="partA2">10</span> × <span id="factorA">4</span
+                ><b id="resultA">40</b>
+              </div>
+              <div class="mini-sum">
+                <span id="partB2">6</span> × <span id="factorB">4</span
+                ><b id="resultB">24</b>
+              </div>
+            </div>
+            <div class="step answer-step">
+              <div class="step-top">
+                <span>STEP 03</span><span class="step-icon">★</span>
+              </div>
+              <h3>Jumlahkan hasilnya</h3>
+              <div class="answer-sum" id="sumEquation">40 + 24 = 64</div>
+              <p>Jawaban akhir</p>
+              <div class="final-answer" id="finalEquation">16 × 4 = 64</div>
+            </div>
+          </div>
+          <button class="wide-btn" id="toPractice">
+            GOT IT! LANJUT LATIHAN <span>→</span>
+          </button>
+        </div>
+
+        <div id="questionPanel" class="hidden">
+          <div class="fight-banner">
+            <div class="fight-slime" id="fightSlime">•ᴗ•</div>
+            <div>
+              <span class="eyebrow" id="fightLabel">SLIME BATTLE</span>
+              <h3 id="fightTitle">Serang dengan jawaban benar!</h3>
+              <p>Jawaban benar menghasilkan koin.</p>
+            </div>
+            <div class="hp">
+              <span>MONSTER HP</span>
+              <div><i id="hpBar"></i></div>
+            </div>
+          </div>
+          <div class="question-card">
+            <span class="eyebrow">HASIL PERKALIAN INI...</span>
+            <div class="big-equation">
+              <span id="numA">13</span> <b>×</b> <span id="numB">3</span>
+              <b>=</b> <span>?</span>
+            </div>
+            <form id="answerForm">
+              <input
+                id="answerInput"
+                type="number"
+                placeholder="Tulis jawabanmu..."
+                required
+              /><button class="wide-btn" type="submit">SERANG! ↗</button>
+            </form>
+          </div>
+          <div class="feedback" id="feedback" aria-live="polite">
+            💡 Coba pecah angka pertama menjadi puluhan dan satuan.
+          </div>
+          <div class="action-row">
+            <button class="hint-btn" id="hintButton">✦ PETUNJUK</button
+            ><button class="hint-btn" id="showSteps">LIHAT CARA</button
+            ><button class="wide-btn hidden" id="nextQuestion">
+              SOAL BERIKUTNYA →
+            </button>
+          </div>
+          <div id="hintText" class="hint-box hidden"></div>
+          <div id="workedSteps" class="hint-box hidden"></div>
+        </div>
+        <div id="completePanel" class="complete hidden">
+          <div class="complete-art">★</div>
+          <span class="eyebrow">QUEST COMPLETE</span>
+          <h2>LEVEL CLEAR!</h2>
+          <p id="completionMessage">Kamu berhasil menyelesaikan misi.</p>
+          <div class="score-row">
+            <div><b id="finalCorrect">0</b><span>JAWABAN BENAR</span></div>
+            <div><b id="finalCoins">0</b><span>KOIN DIDAPAT</span></div>
+          </div>
+          <button class="wide-btn" id="replayButton">MAIN LAGI ↻</button>
+        </div>
+      </section>
+      <footer>
+        <span>✳ MATHQUEST</span><span>LEARN · PLAY · LEVEL UP</span>
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
