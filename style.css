@@ -897,3 +897,25 @@ footer {
     padding: 8px 6px;
   }
 }
+
+/* Whiteboard untuk coretan hitungan */
+.whiteboard { margin-top:22px; padding:22px 24px; background:#fff; border:1px solid var(--line); border-radius:15px; box-shadow:0 8px 24px #55417b08; }
+.whiteboard-heading { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.whiteboard-heading h2 { margin:8px 0 5px; font-size:21px; }
+.whiteboard-heading p, .board-note { margin:0; color:#9289a8; font-size:11px; }
+.board-clear, .board-tool-btn { border:1px solid #e3daf4; background:#fff; color:#7864c5; border-radius:8px; padding:10px 12px; font:8px "Press Start 2P",monospace; cursor:pointer; }
+.board-tools { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:16px 0 12px; }
+.board-tool { display:flex; align-items:center; gap:8px; color:#807692; font-size:11px; }
+.board-tool input[type="color"] { width:34px; height:30px; padding:2px; border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; }
+.board-tool input[type="range"] { width:100px; accent-color:var(--purple); }
+.board-tool-btn[aria-pressed="true"] { background:#f3efff; border-color:#a99ae2; }
+.canvas-wrap { overflow:hidden; border:1px solid #e7e0f2; border-radius:10px; background-color:#fff; background-image:radial-gradient(#e9e3f3 0.8px,transparent 0.8px); background-size:18px 18px; }
+#whiteboardCanvas { display:block; width:100%; height:300px; touch-action:none; cursor:crosshair; }
+.board-note { margin-top:9px; }
+@media (max-width:760px) {
+ .whiteboard { padding:17px 12px; }
+ .whiteboard-heading { align-items:flex-start; }
+ .whiteboard-heading h2 { font-size:18px; }
+ .board-clear { font-size:6px; padding:9px 7px; }
+ #whiteboardCanvas { height:240px; }
+}

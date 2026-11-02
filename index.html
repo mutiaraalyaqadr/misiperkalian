@@ -215,6 +215,29 @@
           <button class="wide-btn" id="replayButton">MAIN LAGI ↻</button>
         </div>
       </section>
+      <section class="whiteboard" aria-labelledby="whiteboardTitle">
+        <div class="whiteboard-heading">
+          <div>
+            <span class="eyebrow">YOUR SCRATCH SPACE</span>
+            <h2 id="whiteboardTitle">Whiteboard</h2>
+            <p>Coret-coret langkah hitunganmu di sini!</p>
+          </div>
+          <button type="button" class="board-clear" id="clearBoard">HAPUS SEMUA ↻</button>
+        </div>
+        <div class="board-tools">
+          <label class="board-tool"><span>Warna pena</span>
+            <input id="penColor" type="color" value="#302744" aria-label="Warna pena">
+          </label>
+          <label class="board-tool"><span>Ukuran</span>
+            <input id="penSize" type="range" min="1" max="12" value="3" aria-label="Ukuran pena">
+          </label>
+          <button type="button" class="board-tool-btn" id="eraserBtn" aria-pressed="false">Penghapus</button>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="whiteboardCanvas" aria-label="Papan tulis untuk menggambar atau menulis perhitungan"></canvas>
+        </div>
+        <p class="board-note">Tips: Gunakan mouse, touchpad, atau sentuh layar untuk menulis.</p>
+      </section>
       <footer>
         <span>✳ MATHQUEST</span><span>LEARN · PLAY · LEVEL UP</span>
       </footer>

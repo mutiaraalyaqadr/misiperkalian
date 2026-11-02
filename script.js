@@ -356,3 +356,64 @@ updateStats();
 updateMap();
 renderLesson();
 updateSoundButton();
+
+// Whiteboard: pointer events support mouse, touch, and stylus.
+(() => {
+  const canvas = $("whiteboardCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const colorInput = $("penColor");
+  const sizeInput = $("penSize");
+  const eraserButton = $("eraserBtn");
+  let drawing = false, erasing = false, previous = null;
+
+  function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    const ratio = window.devicePixelRatio || 1;
+    const old = document.createElement("canvas");
+    old.width = canvas.width; old.height = canvas.height;
+    if (old.width && old.height) old.getContext("2d").drawImage(canvas, 0, 0);
+    canvas.width = Math.max(1, Math.round(rect.width * ratio));
+    canvas.height = Math.max(1, Math.round(rect.height * ratio));
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    ctx.lineCap = "round"; ctx.lineJoin = "round";
+    if (old.width && old.height) ctx.drawImage(old, 0, 0, old.width, old.height, 0, 0, rect.width, rect.height);
+  }
+  function pointFromEvent(event) {
+    const rect = canvas.getBoundingClientRect();
+    return { x:event.clientX-rect.left, y:event.clientY-rect.top };
+  }
+  function beginStroke(event) {
+    event.preventDefault(); drawing = true; previous = pointFromEvent(event);
+    if (canvas.setPointerCapture) canvas.setPointerCapture(event.pointerId);
+    ctx.beginPath(); ctx.arc(previous.x, previous.y, Math.max(1, Number(sizeInput.value)/2), 0, Math.PI*2);
+    ctx.fillStyle = erasing ? "#ffffff" : colorInput.value; ctx.fill();
+  }
+  function drawStroke(event) {
+    if (!drawing) return;
+    event.preventDefault(); const current = pointFromEvent(event);
+    ctx.beginPath(); ctx.moveTo(previous.x, previous.y); ctx.lineTo(current.x, current.y);
+    ctx.strokeStyle = erasing ? "#ffffff" : colorInput.value;
+    ctx.lineWidth = Number(sizeInput.value) * (erasing ? 3 : 1);
+    ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.stroke(); previous = current;
+  }
+  function endStroke() { drawing = false; previous = null; }
+  canvas.addEventListener("pointerdown", beginStroke);
+  canvas.addEventListener("pointermove", drawStroke);
+  canvas.addEventListener("pointerup", endStroke);
+  canvas.addEventListener("pointercancel", endStroke);
+  canvas.addEventListener("lostpointercapture", endStroke);
+  eraserButton.addEventListener("click", () => {
+    erasing = !erasing;
+    eraserButton.setAttribute("aria-pressed", String(erasing));
+    eraserButton.textContent = erasing ? "Pakai pena" : "Penghapus";
+    canvas.style.cursor = erasing ? "cell" : "crosshair";
+  });
+  $("clearBoard").addEventListener("click", () => ctx.clearRect(0, 0, canvas.width, canvas.height));
+  let resizeFrame;
+  window.addEventListener("resize", () => {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(resizeCanvas);
+  });
+  resizeCanvas();
+})();
